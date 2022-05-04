@@ -48,7 +48,7 @@ Resources:
                   - s3:PutObject
                   - s3:PutObjectAcl
                 Resource: '!Sub arn:aws:s3:::cdk-*-assets-${AWS::AccountId}-${AWS::Region}'
-        - PolicyName: PutObject-to-CDK-StagingBucket
+        - PolicyName: ChangeSetOperations
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
