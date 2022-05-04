@@ -40,7 +40,7 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AWSCloudFormationReadOnlyAccess
       Policies:
-        - PolicyName: PutObjectStagingBucket
+        - PolicyName: cdk-assets
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
@@ -48,7 +48,26 @@ Resources:
                 Action:
                   - s3:PutObject
                   - s3:PutObjectAcl
-                Resource: '!Sub arn:aws:s3:::cdk-*-assets-${AWS::AccountId}-${AWS::Region}'
+                Resource: '!Sub arn:aws:s3:::cdk-*-assets-*'
+        - PolicyName: cdk-container-assets
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - ecr:BatchCheckLayerAvailability
+                  - ecr:PutImage
+                  - ecr:InitiateLayerUploa
+                  - ecr:UploadLayerPar
+                  - ecr:CompleteLayerUpload
+                Resource: '!Sub arn:aws:ecr:${AWS::Region}:${AWS::AccountId}:repository/cdk-*-container-assets-*'
+        - PolicyName: GetAuthorizationToken
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: ecr:GetAuthorizationToken
+                Resource: '*'
         - PolicyName: ChangeSetOperations
           PolicyDocument:
             Version: "2012-10-17"
