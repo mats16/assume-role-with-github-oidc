@@ -39,7 +39,7 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AWSCloudFormationReadOnlyAccess
       Policies:
-        - PolicyName: PutObject-to-CDK-StagingBucket
+        - PolicyName: PutObjectStagingBucket
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
