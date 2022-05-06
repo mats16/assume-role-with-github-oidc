@@ -22,4 +22,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Publish
-        run: aws s3 sync --delete --exclude ".git/*" ./ s3://mats-templates/assume-role-with-github-oidc/latest/
+        run: aws s3 sync --delete --acl public-read --exclude ".git/*" ./ s3://mats-templates/assume-role-with-github-oidc/latest/
