@@ -1,11 +1,18 @@
 AWSTemplateFormatVersion: 2010-09-09
 
-Description: IAM Role from GitHub with OpenID Connect.
+Description: IAM for GitHub Actions.
 
 Parameters:
-  GitHubRepositoryOwner:
-    Description: Account name or Organization name
+  GitHubOrg:
+    Description: Organization name or account name
     Type: String
+  GitHubRepo:
+    Description: Repository name
+    Type: String
+    Default: '*'
+  GitHubBranch:
+    Type: String
+    Default: '*'
 
 Resources:
   role:
@@ -17,13 +24,15 @@ Resources:
           - Effect: Allow
             Principal:
               Federated:
-                - !Ref oidcProvider
+                - !ImportValue GitHubOidcProviderArn
             Action:
               - sts:AssumeRoleWithWebIdentity
             Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
               StringLike:
                 token.actions.githubusercontent.com:sub:
-                  - !Sub repo:${GitHubRepositoryOwner}/*
+                  - !Sub repo:${GitHubOrg}/${GitHubRepo}:ref:refs/heads/${GitHubBranch}
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AWSCloudFormationReadOnlyAccess
       Policies:
