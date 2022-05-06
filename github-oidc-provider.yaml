@@ -17,10 +17,3 @@ Resources:
       ThumbprintList: 
         - !Ref Thumbprint
       Url: https://token.actions.githubusercontent.com
-
-Outputs:
-  GitHubOidcProviderArn:
-    Description: GitHub OIDC Provider ARN
-    Value: !Ref OidcProvider
-    Export:
-      Name: GitHubOidcProviderArn
