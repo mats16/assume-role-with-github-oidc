@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 
-Description: IAM for GitHub Actions.
+Description: cdk deploy from github actions
 
 Parameters:
   GitHubOrg:
