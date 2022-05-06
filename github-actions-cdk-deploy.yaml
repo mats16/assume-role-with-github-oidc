@@ -31,12 +31,10 @@ Resources:
               StringLike:
                 token.actions.githubusercontent.com:sub:
                   - !Sub repo:${GitHubOrg}/${GitHubRepo}:ref:refs/heads/${GitHubBranch}
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AWSCloudFormationReadOnlyAccess
       Policies:
         - PolicyName: cdk-deploy
           PolicyDocument:
-            Version: "2012-10-17"
+            Version: 2012-10-17
             Statement:
               - Effect: Allow
                 Action: sts:AssumeRole
@@ -46,24 +44,9 @@ Resources:
               - Effect: Allow
                 Action: iam:PassRole
                 Resource: !Sub 'arn:aws:iam::${AWS::AccountId}:role/cdk-*-cfn-exec-role-${AWS::AccountId}-*'
-              #- Effect: Allow
-              #  Action: ssm:GetParameter
-              #  Resource: !Sub 'arn:aws:ssm:*:${AWS::AccountId}:parameter/cdk-bootstrap/*/version'
-              #- Effect: Allow
-              #  Action:
-              #    - cloudformation:CreateChangeSet
-              #    - cloudformation:DeleteChangeSet
-              #    - cloudformation:ExecuteChangeSet
-              #  Resource: '*'
-              #- Effect: Allow
-              #  Action:
-              #    - s3:getBucketLocation
-              #    - s3:ListAllMyBuckets
-              #  Resource: 
-              #    - '*'
         - PolicyName: cdk-assets
           PolicyDocument:
-            Version: "2012-10-17"
+            Version: 2012-10-17
             Statement:
               - Effect: Allow
                 Action: sts:AssumeRole
