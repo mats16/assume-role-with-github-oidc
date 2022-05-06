@@ -39,23 +39,28 @@ Resources:
             Version: "2012-10-17"
             Statement:
               - Effect: Allow
-                Action: ssm:GetParameter
-                Resource: !Sub 'arn:aws:ssm:*:${AWS::AccountId}:parameter/cdk-bootstrap/*/version'
+                Action: sts:AssumeRole
+                Resource:
+                  - !Sub 'arn:aws:iam::${AWS::AccountId}:role/cdk-*-deploy-role-${AWS::AccountId}-*'
+                  - !Sub 'arn:aws:iam::${AWS::AccountId}:role/cdk-*-lookup-role-${AWS::AccountId}-*'
               - Effect: Allow
                 Action: iam:PassRole
                 Resource: !Sub 'arn:aws:iam::${AWS::AccountId}:role/cdk-*-cfn-exec-role-${AWS::AccountId}-*'
-              - Effect: Allow
-                Action:
-                  - cloudformation:CreateChangeSet
-                  - cloudformation:DeleteChangeSet
-                  - cloudformation:ExecuteChangeSet
-                Resource: '*'
-              - Effect: Allow
-                Action:
-                  - s3:getBucketLocation
-                  - s3:ListAllMyBuckets
-                Resource: 
-                  - '*'
+              #- Effect: Allow
+              #  Action: ssm:GetParameter
+              #  Resource: !Sub 'arn:aws:ssm:*:${AWS::AccountId}:parameter/cdk-bootstrap/*/version'
+              #- Effect: Allow
+              #  Action:
+              #    - cloudformation:CreateChangeSet
+              #    - cloudformation:DeleteChangeSet
+              #    - cloudformation:ExecuteChangeSet
+              #  Resource: '*'
+              #- Effect: Allow
+              #  Action:
+              #    - s3:getBucketLocation
+              #    - s3:ListAllMyBuckets
+              #  Resource: 
+              #    - '*'
         - PolicyName: cdk-assets
           PolicyDocument:
             Version: "2012-10-17"
