@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: GitHub OIDC Provider
+
+Parameters:
+  Thumbprint:
+    Description: Use the thumbprint to verify the certificate of the provider.
+    Type: String
+    Default: 6938fd4d98bab03faadb97b34396831e3780aea1
+
+Resources:
+  OidcProvider:
+    Type: AWS::IAM::OIDCProvider
+    Properties: 
+      ClientIdList: 
+        - sts.amazonaws.com
+      ThumbprintList: 
+        - !Ref Thumbprint
+      Url: https://token.actions.githubusercontent.com
+
+Outputs:
+  GitHubOidcProviderArn:
+    Description: GitHub OIDC Provider ARN
+    Value: !Ref OidcProvider
+    Export:
+      Name: GitHubOidcProviderArn
