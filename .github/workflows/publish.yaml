@@ -6,6 +6,7 @@ on:
   workflow_dispatch: {}
 env:
   AWS_REGION : us-west-2
+  BUCKET_NAME: mats-toolbox
 
 jobs:
   publish:
@@ -22,4 +23,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Publish
-        run: aws s3 sync ./ s3://mats-templates/assume-role-with-github-oidc/latest/ --exclude "*" --include "*.yaml" --acl public-read --delete
+        run: aws s3 sync ./ s3://${{ env.BUCKET_NAME }}/assume-role-with-github-oidc/latest/ --exclude "*" --include "*.yaml" --acl public-read --delete
