@@ -3,8 +3,6 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: s3 sync from GitHub Actions.
 
 Parameters:
-  BucketName:
-    Type: String
   GitHubOrg:
     Description: Organization name or account name
     Type: String
