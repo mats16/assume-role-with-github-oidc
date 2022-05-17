@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Description: s3 sync from GitHub Actions.
+
+Parameters:
+  BucketName:
+    Type: String
+  GitHubOrg:
+    Description: Organization name or account name
+    Type: String
+  GitHubRepo:
+    Description: Repository name
+    Type: String
+    Default: '*'
+  GitHubBranch:
+    Type: String
+    Default: '*'
+
+Resources:
+  role:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !Sub 'arn:aws:iam::${AWS::AccountId}:oidc-provider/token.actions.githubusercontent.com'
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${GitHubRepo}:ref:refs/heads/${GitHubBranch}
+      Policies:
+        - PolicyName: s3-put
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:PutObjectAcl
+                Resource: 'arn:aws:s3:::aws-sam-cli-managed-default-*/*'
+        - PolicyName: sam-publish
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - serverlessrepo:CreateApplication
+                Resource: 'arn:aws:serverlessrepo:*:${AWS::AccountId}:applications/*'
