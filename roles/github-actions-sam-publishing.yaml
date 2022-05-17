@@ -51,4 +51,4 @@ Resources:
               - Effect: Allow
                 Action:
                   - serverlessrepo:CreateApplication
-                Resource: 'arn:aws:serverlessrepo:*:${AWS::AccountId}:applications/*'
+                Resource: !Sub 'arn:aws:serverlessrepo:*:${AWS::AccountId}:applications/*'
