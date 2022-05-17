@@ -3,6 +3,9 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: s3 sync from GitHub Actions.
 
 Parameters:
+  BucketName:
+    Type: String
+    Default: aws-sam-cli-managed-default-samclisourcebucket-*
   GitHubOrg:
     Description: Organization name or account name
     Type: String
@@ -39,7 +42,8 @@ Resources:
                 Action:
                   - s3:PutObject
                   - s3:PutObjectAcl
-                Resource: 'arn:aws:s3:::aws-sam-cli-managed-default-*/*'
+                Resource:
+                  - !Sub 'arn:aws:s3:::${BucketName}/*'
         - PolicyName: sam-publish
           PolicyDocument:
             Version: 2012-10-17
