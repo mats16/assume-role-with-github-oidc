@@ -27,3 +27,11 @@ Deploy [github-oidc-provider.yaml](./github-oidc-provider.yaml)
 [![launch-stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)][3]
 
 [3]: https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=github-actions-file-publishing&templateURL=https://s3.amazonaws.com/mats-toolbox/assume-role-with-github-oidc/latest/roles/github-actions-file-publishing.yaml
+
+#### SAM publishing
+
+[roles/github-actions-san-publishing.yaml](./roles/github-actions-sam-publishing.yaml)
+
+[![launch-stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)][4]
+
+[4]: https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=github-actions-sam-publishing&templateURL=https://s3.amazonaws.com/mats-toolbox/assume-role-with-github-oidc/latest/roles/github-actions-sam-publishing.yaml
