@@ -30,7 +30,7 @@ Deploy [github-oidc-provider.yaml](./github-oidc-provider.yaml)
 
 #### SAM publishing
 
-[roles/github-actions-san-publishing.yaml](./roles/github-actions-sam-publishing.yaml)
+[roles/github-actions-sa-publishing.yaml](./roles/github-actions-sam-publishing.yaml)
 
 [![launch-stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)][4]
 
