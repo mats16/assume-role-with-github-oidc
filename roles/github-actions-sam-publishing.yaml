@@ -55,14 +55,3 @@ Resources:
                   - serverlessrepo:UpdateApplication
                   - serverlessrepo:PutApplicationPolicy
                 Resource: !Sub 'arn:aws:serverlessrepo:*:${AWS::AccountId}:applications/*'
-        - PolicyName: cdk-lookup
-          PolicyDocument:
-            Version: 2012-10-17
-            Statement:
-              - Effect: Allow
-                Action: sts:AssumeRole
-                Resource:
-                  - !Sub 'arn:aws:iam::${AWS::AccountId}:role/cdk-*-lookup-role-${AWS::AccountId}-*'
-              - Effect: Allow
-                Action: iam:PassRole
-                Resource: !Sub 'arn:aws:iam::${AWS::AccountId}:role/cdk-*-cfn-exec-role-${AWS::AccountId}-*'
