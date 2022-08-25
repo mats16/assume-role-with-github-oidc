@@ -10,9 +10,9 @@ Parameters:
     Description: Repository name
     Type: String
     Default: '*'
-  GitHubBranch:
+  GitHubRef:
     Type: String
-    Default: '*'
+    Default: 'refs/heads/main'
 
 Resources:
   role:
@@ -30,6 +30,6 @@ Resources:
               StringEquals:
                 token.actions.githubusercontent.com:aud: sts.amazonaws.com
               StringLike:
-                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${GitHubRepo}:ref:refs/heads/${GitHubBranch}
+                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${GitHubRepo}:ref:${GitHubRef}
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonElasticContainerRegistryPublicPowerUser
