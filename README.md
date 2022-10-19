@@ -14,7 +14,8 @@ Deploy [github-oidc-provider.yaml](./github-oidc-provider.yaml)
 
 | Role | Description | Launth |
 |:--|:--|:--|
-| public-image-publishing | Publish docker image to ECS Public | [![launch-stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)][public-image-publishing] |
+| public-image-publishing | Publish docker image to ECR Public | [![launch-stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)][public-image-publishing] |
+| image-publishing | Publish docker image to ECR | [![launch-stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)][image-publishing] |
 | file-publishing | Publish static files to S3 Bucket | [![launch-stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)][file-publishing] |
 | cdk-deploy | CDK Deploy | [![launch-stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)][cdk-deploy] |
 | cdk-assets-publishing | Publish CDK assets to S3 Bucket | [![launch-stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)][cdk-assets-publishing] |
@@ -22,6 +23,7 @@ Deploy [github-oidc-provider.yaml](./github-oidc-provider.yaml)
 
 
 [public-image-publishing]: https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=github-actions-public-image-publishing&templateURL=https://s3.amazonaws.com/mats-toolbox/assume-role-with-github-oidc/latest/roles/github-actions-public-image-publishing.yaml
+[image-publishing]: https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=github-actions-image-publishing&templateURL=https://s3.amazonaws.com/mats-toolbox/assume-role-with-github-oidc/latest/roles/github-actions-image-publishing.yaml
 [file-publishing]: https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=github-actions-file-publishing&templateURL=https://s3.amazonaws.com/mats-toolbox/assume-role-with-github-oidc/latest/roles/github-actions-file-publishing.yaml
 [cdk-deploy]: https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=github-actions-cdk-deploy&templateURL=https://s3.amazonaws.com/mats-toolbox/assume-role-with-github-oidc/latest/roles/github-actions-cdk-deploy.yaml
 [cdk-assets-publishing]: https://console.aws.amazon.com/cloudformation/home#/stacks/create/review?stackName=github-actions-cdk-assets-publishing&templateURL=https://s3.amazonaws.com/mats-toolbox/assume-role-with-github-oidc/latest/roles/github-actions-cdk-assets-publishing.yaml
