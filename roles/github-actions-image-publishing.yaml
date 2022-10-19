@@ -13,10 +13,6 @@ Parameters:
   GitHubRef:
     Type: String
     Default: 'refs/heads/main'
-  EcrRepoRegion:
-    Description: ECR Repository Region
-    Type: String
-    Default: '*'
   EcrRepoName:
     Description: ECR Repository Name
     Type: String
@@ -62,4 +58,4 @@ Resources:
                   - ecr:InitiateLayerUpload
                   - ecr:UploadLayerPart
                   - ecr:CompleteLayerUpload
-                Resource: !Sub 'arn:aws:ecr:${EcrRepoRegion}:${AWS::AccountId}:repository/${EcrRepoName}'
+                Resource: !Sub 'arn:${AWS::Partition}:ecr:${AWS::Region}:${AWS::AccountId}:repository/${EcrRepoName}'
