@@ -35,8 +35,6 @@ Resources:
                 token.actions.githubusercontent.com:aud: sts.amazonaws.com
               StringLike:
                 token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${GitHubRepo}:ref:${GitHubRef}
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AmazonElasticContainerRegistryPublicPowerUser
       Policies:
         - PolicyName: ecr-login
           PolicyDocument:
