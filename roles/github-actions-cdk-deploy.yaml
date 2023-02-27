@@ -29,7 +29,9 @@ Resources:
               StringEquals:
                 token.actions.githubusercontent.com:aud: sts.amazonaws.com
               StringLike:
-                token.actions.githubusercontent.com:sub: !Sub repo:${GitHubOrg}/${GitHubRepo}:ref:${GitHubRef}
+                token.actions.githubusercontent.com:sub:
+                  - !Sub repo:${GitHubOrg}/${GitHubRepo}:ref:${GitHubRef}
+                  - !Sub repo:${GitHubOrg}/${GitHubRepo}:pull_request
       Policies:
         - PolicyName: cdk-deploy
           PolicyDocument:
