@@ -3,10 +3,10 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: GitHub OIDC Provider
 
 Parameters:
-  Thumbprint:
-    Description: Use the thumbprint to verify the certificate of the provider.
-    Type: String
-    Default: 6938fd4d98bab03faadb97b34396831e3780aea1
+  Thumbprints:
+    Description: Thumbprints to verify the certificate of the provider.
+    Type: CommaDelimitedList
+    Default: 6938fd4d98bab03faadb97b34396831e3780aea1, 1c58a3a8518e8759bf075b76b750d4f2df264fcd
 
 Resources:
   OidcProvider:
@@ -14,6 +14,5 @@ Resources:
     Properties: 
       ClientIdList: 
         - sts.amazonaws.com
-      ThumbprintList: 
-        - !Ref Thumbprint
+      ThumbprintList: !Ref Thumbprints
       Url: https://token.actions.githubusercontent.com
